@@ -9,14 +9,14 @@ public class Main {
     while (continuar) {
       // Display menu options
       System.out.println("Welcome to the Library Management System!");
-      System.out.println("1. Add User");
-      System.out.println("2. Edit User");
-      System.out.println("3. Delete User");
-      System.out.println("4. Add Book");
-      System.out.println("5. Edit Book");
-      System.out.println("6. Delete Book");
-      System.out.println("7. Perform Loan");
-      System.out.println("8. Return Loan");
+      System.out.println("1. Agregar usuario");
+      System.out.println("2. Editar usuario");
+      System.out.println("3. Eliminar usuario");
+      System.out.println("4. Añadir libro");
+      System.out.println("5. Editar libro");
+      System.out.println("6. Eliminar libro");
+      System.out.println("7. Realizar préstamo");
+      System.out.println("8. Devolver préstamo");
       System.out.println("0. Exit");
       int choice = scanner.nextInt();
 
@@ -188,7 +188,46 @@ public class Main {
           }
           break;
         case 7:
-          // Perform Loan logic
+          System.out.println("Ingrese el RUN del usuario:");
+          String RUNUsuario = scanner.next();
+
+          Usuario usuario = biblioteca.buscarUsuarioPorRun(RUNUsuario);
+
+          if (usuario != null) {
+            System.out.println("Ingrese el ISBN del libro a prestar:");
+            String isbnPrestamo = scanner.next();
+
+            Libro libroPrestamo = biblioteca.buscarLibroPorIsbn(isbnPrestamo);
+
+            if (libroPrestamo != null) {
+              System.out.println("Ingrese la cantidad de libros a prestar:");
+              int cantidadPrestamo = scanner.nextInt();
+
+              if (libroPrestamo.getCantidadDisponible() >= cantidadPrestamo) {
+                System.out.println("Ingrese la fecha de préstamo (formato YYYY-MM-DD):");
+                String fechaPrestamo = scanner.next();
+
+                System.out.println("Ingrese la fecha de devolución (formato YYYY-MM-DD):");
+                String fechaDevolucion = scanner.next();
+
+                System.out.println("Ingrese la duración del préstamo en días:");
+                int duracion = scanner.nextInt();
+
+                Prestamo nuevoPrestamo = new Prestamo(libroPrestamo, usuario, fechaPrestamo, fechaDevolucion, duracion);
+                biblioteca.getPrestamos().add(nuevoPrestamo);
+
+                libroPrestamo.setCantidadDisponible(libroPrestamo.getCantidadDisponible() - cantidadPrestamo);
+
+                System.out.println("Préstamo realizado correctamente.");
+              } else {
+                System.out.println("No hay suficientes libros disponibles para prestar.");
+              }
+            } else {
+              System.out.println("No se encontró ningún libro con el ISBN especificado.");
+            }
+          } else {
+            System.out.println("No se encontró ningún usuario con el RUN especificado.");
+          }
           break;
         case 8:
           // Return Loan logic

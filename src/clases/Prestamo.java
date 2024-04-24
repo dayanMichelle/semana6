@@ -1,50 +1,58 @@
 package clases;
 
 public class Prestamo {
-  private String isbnLibro;
-  private String runUsuario;
+  private Libro libro;
+  private Usuario usuario;
   private String fechaPrestamo;
-  private int diasPrestamo;
   private String fechaDevolucion;
+  private int duracion;
 
-  // getters y setters
-  public String getIsbnLibro() {
-    return isbnLibro;
+  public Prestamo(Libro libro, Usuario usuario, String fechaPrestamo, String fechaDevolucion, int duracion) {
+    this.libro = libro;
+    this.usuario = usuario;
+    this.fechaPrestamo = fechaPrestamo;
+    this.fechaDevolucion = fechaDevolucion;
+    this.duracion = duracion;
   }
 
-  public void setIsbnLibro(String isbnLibro) {
-    this.isbnLibro = isbnLibro;
+  public Libro getLibro() {
+    return libro;
   }
 
-  public String getRunUsuario() {
-    return runUsuario;
-  }
-
-  public void setRunUsuario(String runUsuario) {
-    this.runUsuario = runUsuario;
+  public Usuario getUsuario() {
+    return usuario;
   }
 
   public String getFechaPrestamo() {
     return fechaPrestamo;
   }
 
-  public void setFechaPrestamo(String fechaPrestamo) {
-    this.fechaPrestamo = fechaPrestamo;
-  }
-
-  public int getDiasPrestamo() {
-    return diasPrestamo;
-  }
-
-  public void setDiasPrestamo(int diasPrestamo) {
-    this.diasPrestamo = diasPrestamo;
-  }
-
   public String getFechaDevolucion() {
     return fechaDevolucion;
   }
 
+  public int getDuracion() {
+    return duracion;
+  }
+
+  // Setters
+  public void setLibro(Libro libro) {
+    this.libro = libro;
+  }
+
+  public void setUsuario(Usuario usuario) {
+    this.usuario = usuario;
+  }
+
+  public void setFechaPrestamo(String fechaPrestamo) {
+    this.fechaPrestamo = fechaPrestamo;
+  }
+
   public void setFechaDevolucion(String fechaDevolucion) {
     this.fechaDevolucion = fechaDevolucion;
+  }
+
+  public void setDuracion(int duracion) {
+    this.duracion = duracion;
   }
 }
