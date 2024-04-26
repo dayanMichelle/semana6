@@ -35,7 +35,8 @@ public class Main {
             case 1:
               System.out.println("Ingrese la carrera:");
               String carrera = scanner.next();
-              biblioteca.agregarUsuario(new Estudiante(nombreCompleto, run, genero, prestamo, carrera));
+              biblioteca
+                  .agregarUsuario(new Estudiante(nombreCompleto, run, Genero.fromChar(genero), prestamo, carrera));
               break;
             case 2:
               System.out.println("Ingrese la profesión:");
@@ -62,7 +63,7 @@ public class Main {
             boolean nuevoPrestamo = scanner.nextBoolean();
 
             usuarioEditar.setNombreCompleto(nuevoNombreCompleto);
-            usuarioEditar.setGenero(nuevoGenero);
+            usuarioEditar.setGenero(Genero.fromChar(nuevoGenero));
             usuarioEditar.setPrestamo(nuevoPrestamo);
 
             System.out.println("Usuario editado correctamente.");

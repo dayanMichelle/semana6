@@ -1,21 +1,19 @@
 package clases;
 
-
 public class Usuario {
   private String nombreCompleto;
   private String run;
-  private char genero;
+  private Genero genero;
   private boolean prestamo;
 
   // Constructor
-  public Usuario(String nombreCompleto, String run, char genero, boolean prestamo) {
+  public Usuario(String nombreCompleto, String run, Genero genero, boolean prestamo) {
     this.nombreCompleto = nombreCompleto;
     this.run = run;
     this.genero = genero;
     this.prestamo = prestamo;
   }
 
-  // Getters y Setters
   public String getNombreCompleto() {
     return nombreCompleto;
   }
@@ -32,11 +30,11 @@ public class Usuario {
     this.run = run;
   }
 
-  public char getGenero() {
+  public Genero getGenero() {
     return genero;
   }
 
-  public void setGenero(char genero) {
+  public void setGenero(Genero genero) {
     this.genero = genero;
   }
 
@@ -47,4 +45,12 @@ public class Usuario {
   public void setPrestamo(boolean prestamo) {
     this.prestamo = prestamo;
   }
+
+  public static boolean esRunValido(String run) {
+    if (run == null || !run.matches("\\d{1,8}-[\\dkK]")) {
+      return false;
+    }
+    return true;
+  }
+
 }

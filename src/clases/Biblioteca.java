@@ -14,7 +14,24 @@ public class Biblioteca {
   }
 
   public void agregarUsuario(Usuario usuario) {
+
+    if (!Usuario.esRunValido(usuario.getRun()))
+      throw new IllegalStateException("El formato del run no es correcto.");
+
+    if (!isValidRun(usuario.getRun()))
+      throw new IllegalStateException("Run ya existe.");
+
     usuarios.add(usuario);
+
+  }
+
+  private boolean isValidRun(String run) {
+    for (Usuario usuario : usuarios) {
+      if (usuario.getRun().equals(run)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   public Usuario buscarUsuarioPorRun(String run) {
