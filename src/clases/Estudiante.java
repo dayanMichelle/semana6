@@ -3,7 +3,7 @@ package clases;
 public class Estudiante extends Usuario {
   private String carrera;
 
-  public Estudiante(String nombreCompleto, String run, Genero genero, boolean prestamo, String carrera) {
+  public Estudiante(String nombreCompleto, String run, Genero genero, String prestamo, String carrera) {
     super(nombreCompleto, run, genero, prestamo);
     this.carrera = carrera;
   }

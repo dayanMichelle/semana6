@@ -58,7 +58,7 @@ public class Libro {
 
   static void throwErrorWhenCantidadDisponibleIsLessThanZeroOrMoreThanCantidadBiblioteca(int cantidadDisponible,
       int cantidadBiblioteca) {
-    if (cantidadDisponible <= 0)
+    if (cantidadDisponible < 0)
       throw new IllegalArgumentException("cantidadDisponible debe ser mayor a 0");
 
     if (cantidadDisponible > cantidadBiblioteca)

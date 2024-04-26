@@ -30,7 +30,7 @@ public class Main {
           String run = scanner.next();
           System.out.println("Ingrese el género (M o F):");
           char genero = scanner.next().charAt(0);
-          boolean prestamo = false;
+          String prestamo = "0";
           switch (tipoUsuario) {
             case 1:
               System.out.println("Ingrese la carrera:");
@@ -59,12 +59,9 @@ public class Main {
             String nuevoNombreCompleto = scanner.next();
             System.out.println("Ingrese el nuevo género (M o F):");
             char nuevoGenero = scanner.next().charAt(0);
-            System.out.println("¿Tiene un préstamo activo? (true o false):");
-            boolean nuevoPrestamo = scanner.nextBoolean();
 
             usuarioEditar.setNombreCompleto(nuevoNombreCompleto);
             usuarioEditar.setGenero(Genero.fromChar(nuevoGenero));
-            usuarioEditar.setPrestamo(nuevoPrestamo);
 
             System.out.println("Usuario editado correctamente.");
           } else {
@@ -164,6 +161,11 @@ public class Main {
           Usuario usuario = biblioteca.buscarUsuarioPorRun(RUNUsuario);
 
           if (usuario != null) {
+            if (!usuario.getPrestamo().equals("0")) {
+              System.out.println("El usuario ya tiene un libro prestado.");
+              return;
+            }
+
             System.out.println("Ingrese el ISBN del libro a prestar:");
             String isbnPrestamo = scanner.next();
 
@@ -174,16 +176,17 @@ public class Main {
               int cantidadPrestamo = scanner.nextInt();
 
               if (libroPrestamo.getCantidadDisponible() >= cantidadPrestamo) {
-                System.out.println("Ingrese la fecha de préstamo (formato YYYY-MM-DD):");
-                String fechaPrestamo = scanner.next();
+                String fechaPrestamo = Fecha.getFechaActual();
+                int diasPrestamo = usuario instanceof Docente ? DiasPrestamo.DOCENTE.getDays()
+                    : DiasPrestamo.ESTUDIANTE.getDays();
 
-                System.out.println("Ingrese la fecha de devolución (formato YYYY-MM-DD):");
-                String fechaDevolucion = scanner.next();
+                String fechaDevolucion = Fecha.getFechaActual(diasPrestamo);
 
-                System.out.println("Ingrese la duración del préstamo en días:");
-                int duracion = scanner.nextInt();
+                Prestamo nuevoPrestamo = new Prestamo(libroPrestamo, usuario, fechaPrestamo, fechaDevolucion,
+                    diasPrestamo);
 
-                Prestamo nuevoPrestamo = new Prestamo(libroPrestamo, usuario, fechaPrestamo, fechaDevolucion, duracion);
+                System.out.println("Prestamo: " +
+                    nuevoPrestamo.getDuracion());
                 biblioteca.getPrestamos().add(nuevoPrestamo);
 
                 libroPrestamo.setCantidadDisponible(libroPrestamo.getCantidadDisponible() - cantidadPrestamo);
