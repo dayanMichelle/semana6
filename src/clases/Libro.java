@@ -8,14 +8,15 @@ public class Libro {
   private int cantidadDisponible;
   private String imagen;
 
-  public Libro(String isbn, String titulo, String autor, int cantidadBiblioteca, int cantidadDisponible, String imagen) {
+  public Libro(String isbn, String titulo, String autor, int cantidadBiblioteca, int cantidadDisponible,
+      String imagen) {
     this.isbn = isbn;
     this.titulo = titulo;
     this.autor = autor;
-    this.cantidadBiblioteca = cantidadBiblioteca;
-    this.cantidadDisponible = cantidadDisponible;
     this.imagen = imagen;
-}
+    setCantidadBiblioteca(cantidadBiblioteca);
+    setCantidadDisponible(cantidadDisponible);
+  }
 
   public String getIsbn() {
     return isbn;
@@ -46,7 +47,22 @@ public class Libro {
   }
 
   public void setCantidadBiblioteca(int cantidadBiblioteca) {
+    throwErrorWhenCantidadBibliotecaIsLessThanZero(cantidadBiblioteca); // idadBiblioteca);
     this.cantidadBiblioteca = cantidadBiblioteca;
+  }
+
+  static void throwErrorWhenCantidadBibliotecaIsLessThanZero(int cantidadBiblioteca) {
+    if (cantidadBiblioteca <= 0)
+      throw new IllegalArgumentException("cantidadBiblioteca debe ser mayor a 0");
+  }
+
+  static void throwErrorWhenCantidadDisponibleIsLessThanZeroOrMoreThanCantidadBiblioteca(int cantidadDisponible,
+      int cantidadBiblioteca) {
+    if (cantidadDisponible <= 0)
+      throw new IllegalArgumentException("cantidadDisponible debe ser mayor a 0");
+
+    if (cantidadDisponible > cantidadBiblioteca)
+      throw new IllegalArgumentException("cantidadDisponible debe ser menor o igual de la cantidadBiblioteca");
   }
 
   public int getCantidadDisponible() {
@@ -54,6 +70,8 @@ public class Libro {
   }
 
   public void setCantidadDisponible(int cantidadDisponible) {
+    throwErrorWhenCantidadDisponibleIsLessThanZeroOrMoreThanCantidadBiblioteca(cantidadDisponible,
+        cantidadBiblioteca);
     this.cantidadDisponible = cantidadDisponible;
   }
 

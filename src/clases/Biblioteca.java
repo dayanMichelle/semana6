@@ -66,7 +66,13 @@ public class Biblioteca {
   }
 
   public void agregarLibro(Libro libro) {
+    throwExceptionWhenISBNIsDuplicate(libro.getIsbn());
     libros.add(libro);
+  }
+
+  private void throwExceptionWhenISBNIsDuplicate(String isbn) {
+    if (buscarLibroPorIsbn(isbn) != null)
+      throw new IllegalStateException("Código de ISBN repetido");
   }
 
   public Libro buscarLibroPorIsbn(String isbn) {
@@ -79,6 +85,8 @@ public class Biblioteca {
   }
 
   public void editarLibro(String isbn, Libro libro) {
+    throwExceptionWhenISBNIsDuplicate(libro.getIsbn());
+
     for (int i = 0; i < libros.size(); i++) {
       if (libros.get(i).getIsbn().equals(isbn)) {
         libros.set(i, libro);

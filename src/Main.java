@@ -41,7 +41,7 @@ public class Main {
             case 2:
               System.out.println("Ingrese la profesión:");
               String profesion = scanner.next();
-              biblioteca.agregarUsuario(new Docente(nombreCompleto, run, genero, prestamo, profesion));
+              biblioteca.agregarUsuario(new Docente(nombreCompleto, run, Genero.fromChar(genero), prestamo, profesion));
               break;
             default:
               System.out.println("Tipo de usuario no válido.");
@@ -91,25 +91,10 @@ public class Main {
           String autor = scanner.next();
           System.out.println("Ingrese la cantidad de este libro en la biblioteca:");
           int cantidadBiblioteca = scanner.nextInt();
-          while (cantidadBiblioteca <= 0) {
-            System.out.println("Ingrese la cantidad de este libro en la biblioteca:");
-            cantidadBiblioteca = scanner.nextInt();
 
-            if (cantidadBiblioteca <= 0) {
-              System.out.println("La cantidad en biblioteca debe ser mayor a cero.");
-            }
-          }
           System.out.println("Ingrese la cantidad disponible de este libro:");
           int cantidadDisponible = scanner.nextInt();
-          while (cantidadDisponible <= 0 || cantidadDisponible > cantidadBiblioteca) {
-            System.out.println("Ingrese la cantidad disponible de este libro:");
-            cantidadDisponible = scanner.nextInt();
 
-            if (cantidadDisponible <= 0 || cantidadDisponible > cantidadBiblioteca) {
-              System.out
-                  .println("La cantidad disponible debe ser mayor a cero y menor o igual a la cantidad en biblioteca.");
-            }
-          }
           System.out.println("Ingrese la URL de la imagen del libro:");
           String imagen = scanner.next();
 
@@ -134,32 +119,16 @@ public class Main {
 
             System.out.println("Ingrese la nueva cantidad de este libro en la biblioteca:");
             int nuevaCantidadBiblioteca = scanner.nextInt();
-            while (nuevaCantidadBiblioteca <= 0) {
-              System.out.println("Ingrese la cantidad de este libro en la biblioteca:");
-              nuevaCantidadBiblioteca = scanner.nextInt();
-
-              if (nuevaCantidadBiblioteca <= 0) {
-                System.out.println("La cantidad en biblioteca debe ser mayor a cero.");
-              }
-            }
 
             System.out.println("Ingrese la nueva cantidad disponible de este libro:");
             int nuevaCantidadDisponible = scanner.nextInt();
-            while (nuevaCantidadDisponible <= 0 || nuevaCantidadDisponible > nuevaCantidadDisponible) {
-              System.out.println("Ingrese la cantidad disponible de este libro:");
-              cantidadDisponible = scanner.nextInt();
-
-              if (cantidadDisponible <= 0 || cantidadDisponible > nuevaCantidadBiblioteca) {
-                System.out
-                    .println(
-                        "La cantidad disponible debe ser mayor a cero y menor o igual a la cantidad en biblioteca.");
-              }
-            }
 
             System.out.println("Ingrese el nuevo título del libro:");
             String nuevoTitulo = scanner.next();
+
             System.out.println("Ingrese el nuevo autor del libro:");
             String nuevoAutor = scanner.next();
+
             System.out.println("Ingrese la nueva URL de la imagen del libro:");
             String nuevaImagen = scanner.next();
 
