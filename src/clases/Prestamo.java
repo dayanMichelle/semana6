@@ -55,4 +55,11 @@ public class Prestamo {
   public void setDuracion(int duracion) {
     this.duracion = duracion;
   }
+
+  @Override
+  public String toString() {
+    return "Prestamo [libro=" + libro + ", usuario=" + usuario + ", fechaPrestamo=" + fechaPrestamo
+        + ", fechaDevolucion=" + fechaDevolucion + ", duracion=" + duracion + "]";
+  }
+
 }

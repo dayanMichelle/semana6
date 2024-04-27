@@ -53,4 +53,10 @@ public class Usuario {
     return true;
   }
 
+  @Override
+  public String toString() {
+    return "Usuario [nombreCompleto=" + nombreCompleto + ", run=" + run + ", genero=" + genero + ", prestamo="
+        + prestamo + "]";
+  }
+
 }

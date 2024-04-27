@@ -185,13 +185,12 @@ public class Main {
                 Prestamo nuevoPrestamo = new Prestamo(libroPrestamo, usuario, fechaPrestamo, fechaDevolucion,
                     diasPrestamo);
 
-                System.out.println("Prestamo: " +
-                    nuevoPrestamo.getDuracion());
                 biblioteca.getPrestamos().add(nuevoPrestamo);
 
                 libroPrestamo.setCantidadDisponible(libroPrestamo.getCantidadDisponible() - cantidadPrestamo);
 
                 System.out.println("Préstamo realizado correctamente.");
+                System.out.println(nuevoPrestamo.toString());
               } else {
                 System.out.println("No hay suficientes libros disponibles para prestar.");
               }

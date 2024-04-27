@@ -82,4 +82,10 @@ public class Libro {
   public void setImagen(String imagen) {
     this.imagen = imagen;
   }
+
+  @Override
+  public String toString() {
+    return "Libro [isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", cantidadBiblioteca="
+        + cantidadBiblioteca + ", cantidadDisponible=" + cantidadDisponible + ", imagen=" + imagen + "]";
+  }
 }
