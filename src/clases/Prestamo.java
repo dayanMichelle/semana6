@@ -8,6 +8,7 @@ public class Prestamo {
   private int duracion;
 
   public Prestamo(Libro libro, Usuario usuario, String fechaPrestamo, String fechaDevolucion, int duracion) {
+    usuario.setPrestamo(libro.getIsbn());
     this.libro = libro;
     this.usuario = usuario;
     this.fechaPrestamo = fechaPrestamo;

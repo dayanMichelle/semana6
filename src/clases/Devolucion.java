@@ -5,6 +5,8 @@ public class Devolucion {
   private Usuario usuario;
   private String fechaDevolucionReal;
 
+  private static final float MONTO_DEVOLUCION_POR_DIA = 1000;
+
   public Devolucion(Libro libro, Usuario usuario, String fechaDevolucionReal) {
 
     if (!usuario.getPrestamo().equals(libro.getIsbn())) {
@@ -41,6 +43,11 @@ public class Devolucion {
 
   public void setFechaDevolucionReal(String fechaDevolucionReal) {
     this.fechaDevolucionReal = fechaDevolucionReal;
+  }
+
+  public float calculateMulta(String fechaDevolucion) {
+    long diasDeAtraso = Fecha.calculateDistanciaDias(fechaDevolucion, this.fechaDevolucionReal);
+    return diasDeAtraso * MONTO_DEVOLUCION_POR_DIA;
   }
 
 }

@@ -220,7 +220,23 @@ public class Main {
             break;
 
           }
-          new Devolucion(libroDevolucion, usuarioADevolver, Fecha.getFechaActual());
+          Devolucion devolucion = new Devolucion(libroDevolucion, usuarioADevolver, Fecha.getFechaActual());
+
+          Prestamo prestamoADevolver = biblioteca.obtenerPrestamoPorRunYIsbn(RUNUsuarioADevolver, isbnDevolucion);
+
+          if (prestamoADevolver == null) {
+            System.out.println("No se encontró ningún préstamo con el ISBN y RUN especificado.");
+            break;
+          }
+          float multa = devolucion.calculateMulta(prestamoADevolver.getFechaDevolucion());
+          if (multa > 0) {
+            System.out.println("El usuario tiene una multa de $" + multa);
+            break;
+          }
+
+          biblioteca.devolverPrestamo(prestamoADevolver);
+          System.out.println("El usuario no tiene multa");
+          System.out.println("Devolución realizada correctamente.");
 
           break;
         case 0:
@@ -229,8 +245,6 @@ public class Main {
         default:
           System.out.println("Invalid choice. Please try again.");
       }
-
-      // Close the scanner
     }
   }
 }

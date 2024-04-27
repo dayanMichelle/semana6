@@ -136,4 +136,13 @@ public class Biblioteca {
     this.usuarios = usuarios;
   }
 
+  public Prestamo obtenerPrestamoPorRunYIsbn(String run, String isbn) {
+    for (Prestamo prestamo : prestamos) {
+      if (prestamo.getUsuario().getRun().equals(run) && prestamo.getLibro().getIsbn().equals(isbn)) {
+        return prestamo;
+      }
+    }
+    return null;
+  }
+
 }
