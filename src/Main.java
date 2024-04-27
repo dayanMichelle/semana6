@@ -202,7 +202,26 @@ public class Main {
           }
           break;
         case 8:
-          // Return Loan logic
+          System.out.println("Ingrese el ISBN del libro a devolver:");
+          String isbnDevolucion = scanner.next();
+          Libro libroDevolucion = biblioteca.buscarLibroPorIsbn(isbnDevolucion);
+
+          if (libroDevolucion == null) {
+            System.out.println("No se encontró ningún libro con el ISBN especificado.");
+            break;
+          }
+
+          System.out.println("Ingrese el RUN del usuario:");
+          String RUNUsuarioADevolver = scanner.next();
+
+          Usuario usuarioADevolver = biblioteca.buscarUsuarioPorRun(RUNUsuarioADevolver);
+          if (usuarioADevolver == null) {
+            System.out.println("No se encontró ningún usuario con el RUN especificado.");
+            break;
+
+          }
+          new Devolucion(libroDevolucion, usuarioADevolver, Fecha.getFechaActual());
+
           break;
         case 0:
           continuar = false;
